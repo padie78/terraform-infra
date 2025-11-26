@@ -18,10 +18,19 @@ find /var/www -type f -exec chmod 0664 {} \;
 
 cd /var/www/html
 
-# Obtener metadata de la instancia AWS
+# Obtener metadata de la instancia AWS y guardarla en index.html
 curl -s http://169.254.169.254/latest/meta-data/ | jq > index.html
 sed -i '1i<pre>' index.html
 sed -i '$a</pre>' index.html
 
 # Descargar ejemplo de aplicación PHP
-curl -O https://github.com/padie78/terraform-infra/app/index.php
+sudo curl -O https://raw.githubusercontent.com/padie78/terraform-infra/main/app/index.php
+
+
+# Configurar Apache para priorizar index.php
+echo "DirectoryIndex index.php index.html" > /etc/apache2/mods-enabled/dir.conf
+
+# Reiniciar Apache
+systemctl restart apache2
+
+

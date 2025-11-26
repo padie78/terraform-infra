@@ -6,7 +6,7 @@ resource "aws_autoscaling_group" "web_asg" {
   vpc_zone_identifier  = [aws_subnet.public.id]   # Subnet de la VPC
   launch_template {
     id      = aws_launch_template.web.id
-    version = "$Latest"
+    version = aws_launch_template.web.latest_version
   }
 
   target_group_arns = [aws_lb_target_group.tg.arn]
