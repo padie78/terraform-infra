@@ -24,4 +24,4 @@ sed -i '1i<pre>' index.html
 sed -i '$a</pre>' index.html
 
 # Descargar ejemplo de aplicación PHP
-curl -O https://raw.githubusercontent.com/Azure/vm-scale-sets/master/terraform/terraform-tutorial/app/index.php
+curl -O https://github.com/padie78/terraform-infra/app/index.php
